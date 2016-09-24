@@ -31,12 +31,14 @@ namespace FormatValidatorTests.Integration
         }
 
         [TestMethod]
-        public void Header_1_ValidatesCorrectly()
+        public void Function_WhenUsingHeaders_ValidatorShouldNotErrorOnHeaderRow()
         {
             const string FILE = @"data\headers-testfile-1.csv";
             int totalErrorCount = 0;
             Validator validator = Validator.FromJson(System.IO.File.ReadAllText(CONFIG));
             FileSourceReader source = new FileSourceReader(FILE);
+
+            validator.SetRowSeperator("\r\n");
 
             List<RowValidationError> errors = new List<RowValidationError>(validator.Validate(source));
             totalErrorCount = GetTotalErrorCount(errors);

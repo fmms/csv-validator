@@ -32,6 +32,11 @@ namespace FormatValidator.Validators
 
             MoveRowCounterToCurrentRow();
 
+            if(_rowCounter == 1) // isHeaderRow, header row is the first row in **most** CSV files
+            {
+
+            }
+
             for(int i = 0; i < parts.Length; i++)
             {
                 if(i < _columns.Length)
